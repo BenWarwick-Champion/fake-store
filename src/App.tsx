@@ -12,8 +12,10 @@ import Item from './components/Item/Item';
 
 function App() {
 
+  const [cartIsOpen, setCartIsOpen] = useState<boolean>(false);
+  const [cartItems, setCartItems] = useState<CartItemType[]>([]);
+
   const {data, isLoading, error} = useQuery<CartItemType[]>('products', getProducts);
-  console.log(data);
 
   const getTotalItems = () => {
     return null;

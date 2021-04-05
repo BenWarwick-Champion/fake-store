@@ -11,7 +11,9 @@ const Item = ({item, handleAddToCart}: ItemsProps) => (
             <p>{item.description}</p>
             <h3>${item.price}</h3>
         </div>
-        <Button onClick={() => handleAddToCart(item)} />
+        <Button onClick={() => handleAddToCart(item)}>
+            Add To Cart
+        </Button>
     </Wrapper>
 )
 
