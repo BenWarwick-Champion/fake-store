@@ -9,7 +9,7 @@ const Item = ({item, handleAddToCart}: ItemsProps) => (
         <div>
             <h3>{item.title}</h3>
             <p>{item.description}</p>
-            <h3>${item.price}</h3>
+            <h3>£{item.price.toFixed(2)}</h3>
         </div>
         <Button onClick={() => handleAddToCart(item)}>
             Add To Cart
