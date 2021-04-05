@@ -19,6 +19,7 @@ const CartItem = ({item, addToCart, removeFromCart}: CartItemProps) => (
                 >
                     -
                 </Button>
+                <p>{item.amount}</p>
                 <Button
                     size='small'
                     disableElevation

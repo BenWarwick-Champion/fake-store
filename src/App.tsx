@@ -22,12 +22,32 @@ function App() {
     items.reduce((sum: number, items: CartItemType) => sum + items.amount, 0)
   );
 
-  const handleAddToCart = () => {
-    return null;
-  }
+  const handleAddToCart = (clickedItem: CartItemType) => (
+    setCartItems(prev => {
+      const isItemInCart = prev.find(item => item.id === clickedItem.id)
+      if (isItemInCart) {
+        return prev.map(item => 
+          item.id === clickedItem.id
+          ? {...item, amount: item.amount + 1}
+          : item
+        );
+      }
+      // Otherwise, it's a new item being added
+      return [...prev, {...clickedItem, amount: 1}];
+    })
+  )
 
-  const handleRemoveFromCart = () => {
-    return null;
+  const handleRemoveFromCart = (id: number) => {
+    setCartItems(prev => (
+      prev.reduce((acc, item) => {
+        if (item.id === id) {
+          if (item.amount === 1) return acc;
+          return [...acc, {...item, amount: item.amount - 1}];
+        } else {
+          return [...acc, item];
+        }
+      }, [] as CartItemType[]) // Add this to the reduce function to prevent TS from whining
+    ))
   }
 
   if (isLoading) return <LinearProgress />;
